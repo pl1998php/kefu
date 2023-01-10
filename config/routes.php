@@ -12,11 +12,11 @@ declare(strict_types=1);
 use Hyperf\HttpServer\Router\Router;
 //use App\Controller\Api\V1 as ApiV1;
 
-Router::addRoute(['GET', 'POST', 'HEAD'], '/', 'App\Controller\IndexController@index');
-
-Router::get('/favicon.ico', function () {
-    return '';
-});
+//Router::addRoute(['GET', 'POST', 'HEAD'], '/', 'App\Controller\IndexController@index');
+//
+//Router::get('/favicon.ico', function () {
+//    return '';
+//});
 
 //Router::addGroup('api',function (){
 //    Router::addGroup('v1',function (){
@@ -25,5 +25,5 @@ Router::get('/favicon.ico', function () {
 //});
 
 Router::addServer('ws', function () {
-    Router::get('/customer ', 'App\Controller\Ws\WebSocketController');
+    Router::get('/', 'App\Controller\Ws\WebSocketController');
 });

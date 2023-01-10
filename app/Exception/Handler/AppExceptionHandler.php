@@ -15,8 +15,8 @@ use App\Enum\HttpCodeEnum;
 use App\Trains\ResponseHandler;
 use Hyperf\Contract\StdoutLoggerInterface;
 use Hyperf\ExceptionHandler\ExceptionHandler;
-use Hyperf\HttpMessage\Exception\NotFoundHttpException;
 use Psr\Http\Message\ResponseInterface;
+use  Hyperf\HttpServer\Exception\Handler\HttpExceptionHandler;
 
 class AppExceptionHandler extends ExceptionHandler
 {
@@ -31,7 +31,7 @@ class AppExceptionHandler extends ExceptionHandler
         $this->logger->error(sprintf('%s[%s] in %s', $throwable->getMessage(), $throwable->getLine(), $throwable->getFile()));
         $this->logger->error($throwable->getTraceAsString());
 
-        if ($throwable instanceof NotFoundHttpException) {
+        if ($throwable instanceof HttpExceptionHandler) {
             return $response->withBody($this->getSwooleStream(HttpCodeEnum::NOT_FOUND, '路由不存在'));
         }
         return $response->withBody($this->getSwooleStream(HttpCodeEnum::SERVER_ERROR, '服务异常'), [

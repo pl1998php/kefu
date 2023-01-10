@@ -18,6 +18,7 @@ use App\Services\Auth\AuthService;
 use Hyperf\HttpServer\Annotation\Controller;
 use Hyperf\HttpServer\Annotation\Middleware;
 use Hyperf\HttpServer\Annotation\RequestMapping;
+use Throwable;
 
 #[Controller]
 class AuthController extends ApiController
@@ -47,12 +48,8 @@ class AuthController extends ApiController
         try {
             $data = $authService->login($params);
             return $this->success($data);
-        } catch (\Throwable $throwable) {
-            return $this->fail($throwable->getMessage(), 200, [
-                'line' => $throwable->getLine(),
-                'file' => $throwable->getFile(),
-                'message' => $throwable->getMessage(),
-            ]);
+        } catch (Throwable $throwable) {
+            return $this->fail($throwable->getMessage(), 200);
         }
     }
 

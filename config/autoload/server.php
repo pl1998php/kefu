@@ -14,6 +14,7 @@ use Hyperf\Server\Server;
 use Swoole\Constant;
 
 return [
+
     'mode' => SWOOLE_PROCESS,
     'servers' => [
         [
@@ -25,6 +26,9 @@ return [
             'callbacks' => [
                 Event::ON_REQUEST => [Hyperf\HttpServer\Server::class, 'onRequest'],
             ],
+            'settings' => [
+                'open_websocket_protocol' => false,
+            ],
         ],
         [
             'name' => 'ws',
@@ -33,10 +37,13 @@ return [
             'port' =>  (int)env('APP_WS_PORT',9501),
             'sock_type' => SWOOLE_SOCK_TCP,
             'callbacks' => [
+
                 Event::ON_HAND_SHAKE => [Hyperf\WebSocketServer\Server::class, 'onHandShake'],
                 Event::ON_MESSAGE => [Hyperf\WebSocketServer\Server::class, 'onMessage'],
                 Event::ON_CLOSE => [Hyperf\WebSocketServer\Server::class, 'onClose'],
             ],
+
+
         ],
     ],
     'settings' => [

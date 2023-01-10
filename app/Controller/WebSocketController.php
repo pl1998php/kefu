@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 
-namespace App\Controller\Ws;
+namespace App\Controller;
 
 use App\Container\Log;
 use App\Enum\Ws\WsTraits;
@@ -40,17 +40,14 @@ class WebSocketController implements OnMessageInterface, OnOpenInterface, OnClos
 
     public function onClose($server, int $fd, int $reactorId): void
     {
+        var_dump($fd);
         $this->userService->delUser( $fd);
     }
 
     public function onOpen($server,  $request): void
     {
-
+        Log::get()->info('open',[]);
          var_dump($request->getData());
-         $this->userService->setUser($server->fd,[
-             'user_token' => $request->get('user_token'),
-             'user_name' => '小美_'.$server->fd
-         ]);
         $server->push($request->fd, $this->getOpenMessage());
     }
 }
