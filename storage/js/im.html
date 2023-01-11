@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>客服小程序</title>
+   <link rel="stylesheet" type="text/css" href="im.css">
+</head>
+<body>
+<div id="customer_service">
+    <div class="wave">
+        <div class="user_name"></div>
+        <img id="user_avatar" src="https://cdn.learnku.com/uploads/avatars/32593_1652273246.jpeg!/both/200x200">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+<!--    <div id="chat_window" class="action_hide">-->
+    <div id="chat_window">
+        <div class="chat">
+            <div id="chat_content" class="chat_message">
+                <div class="user_left">
+                    <div class="chat_msg_left">
+                        <div class="chat_msg_top_left">
+                            <span>客服PHP</span>
+                            <span>2023-01-11 20:59:44</span>
+                        </div>
+                        <div class="chat_msg_content_left">
+                            <div class="chat_avatar_left">
+                                <img src="https://cdn.learnku.com//uploads/communities/Y7fElYYwCFjTTXCdwPNW.png!/both/44x44">
+                            </div>
+                            <span class="message_before_left"></span>
+                            <div class="chat_msg_content_left">animation 属性是一个简写属性，用于设置六个动画属性：
+                                animation-name
+                                animation-duration
+                                animation-timing-function
+                                animation-delay
+                                animation-iteration-count
+                                animation-direction</div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="user_right">
+                    <div class="chat_msg_right">
+                        <div class="chat_msg_top_right">
+                            <span>客服PHP</span>
+                            <span>2023-01-11 20:59:44</span>
+                        </div>
+                        <div class="chat_msg_content_right">
+                            <div class="chat_avatar_right">
+                                <img src="https://cdn.learnku.com/uploads/avatars/32593_1652273246.jpeg!/both/200x200">
+                            </div>
+                            <span class="message_before_right"></span>
+                            <div class="chat_msg_content_right">animation 属性是一个简写属性，用于设置六个动画属性：
+                                animation-name
+                                animation-duration
+                                animation-timing-function
+                                animation-delay
+                                animation-iteration-count
+                                animation-direction</div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="content">
+            <div class="msg_tool"></div>
+           <div class="send_message">
+               <textarea placeholder="请输入消息" class="chat_edit" rows="8" ></textarea>
+           </div>
+
+        </div>
+    </div>
+</div>
+</body>
+<script src="im.js"></script>
+<script>
+    let documentObject = new TestElementObject();
+    //执行实例化操作
+    documentObject.setConfig('setToken').init();
+    console.log(documentObject)
+</script>
+</html>
