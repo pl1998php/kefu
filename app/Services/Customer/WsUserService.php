@@ -4,20 +4,23 @@ declare(strict_types=1);
 
 
 namespace App\Services\Customer;
-use Hyperf\Cache\Annotation\Cacheable;
-use Hyperf\Cache\Annotation\CacheEvict;
+use App\Container\Cache;
+use App\Enum\Ws\WsCacheEnum;
+
 
 class WsUserService
 {
-
-    #[Cacheable(prefix: "ws:user", ttl: 7200*36, value: "_#{fid}")]
-    public function setUser(int $fid, array $data =[])
+    public static function setUserCache(int $fd,string $cookie)
     {
-        return $data;
+        Cache::get()->set(WsCacheEnum::FD_FIX.$fd,$cookie,WsCacheEnum::FD_FIX_TIMEOUT);
+        Cache::get()->set(WsCacheEnum::FD_FIX.$cookie,$fd,WsCacheEnum::FD_FIX_TIMEOUT);
     }
 
-    #[CacheEvict(prefix: "ws:user", value: "_#{fid}")]
-    public function delUser(int $fid){
-        return true;
+    public static function delUserCache(int $fd,string $cookie='')
+    {
+        Cache::get()->delete(WsCacheEnum::FD_FIX.$fd);
+        if(!empty($cookie)) {
+            Cache::get()->delete(WsCacheEnum::FD_FIX.$cookie);
+        }
     }
 }

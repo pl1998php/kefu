@@ -17,7 +17,7 @@ namespace App\Enum;
 enum DatabaseEnum
 {
     /** @var string 商品库 */
-    public const SHOP_CONNECTION = 'shop';
+    public const SHOP_CONNECTION = 'im';
 
     /** @var string 后台库 */
     public const ADMIN_CONNECTION = 'default';

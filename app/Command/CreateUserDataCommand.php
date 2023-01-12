@@ -11,6 +11,7 @@ declare(strict_types=1);
  */
 namespace App\Command;
 
+use App\Model\Customer\CustomerUser;
 use App\Model\Shop\Users;
 use Hyperf\Command\Annotation\Command;
 use Hyperf\Command\Command as HyperfCommand;
@@ -47,5 +48,20 @@ class CreateUserDataCommand extends HyperfCommand
             ]);
         }
         $this->info('账号：13678900001 密码：123456');
+        if(CustomerUser::where('email','pltruenine@163.com')->doesntExist()) {
+            CustomerUser::create([
+                'app_id'=>1,
+                'name' => '客服-小潘',
+                'avatar' => 'https://cdn.learnku.com/uploads/avatars/32593_1652273246.jpeg!/both/100x100',
+                'password' => passwordHash(getPassword(123456)),
+                'phone'=>'13217025359',
+                'email'=>'pltruenine@163.com',
+                'wx'=>'pan13217025359',
+                'six'=>1,
+                'status'=>3
+            ]);
+        }
+
+
     }
 }

@@ -1,23 +1,22 @@
 <?php
-
 declare(strict_types=1);
 /**
- * This file is part of Hyperf.
- *
- * @link     https://www.hyperf.io
- * @document https://hyperf.wiki
- * @contact  group@hyperf.io
- * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
- */
-namespace App\Controller\Api\V1;
+ * Created By PhpStorm.
+ * User : Latent
+ * Date : 2023/1/15
+ * Time : 10:20
+ **/
+
+namespace App\Controller\Admin;
 
 use App\Controller\ApiController;
+use App\Enum\UserEnum;
 use App\Middleware\Api\AuthMiddleware;
-use App\Request\Api\AuthRequest;
-use App\Services\Common\AuthService;
+use App\Request\Admin\AuthRequest;
 use Hyperf\HttpServer\Annotation\Controller;
 use Hyperf\HttpServer\Annotation\Middleware;
 use Hyperf\HttpServer\Annotation\RequestMapping;
+use App\Services\Common\AuthService;
 use Throwable;
 
 #[Controller]
@@ -41,7 +40,7 @@ class AuthController extends ApiController
         $params = $request->post();
 
         try {
-            $data = $authService->login($params);
+            $data = $authService->setGuard(UserEnum::ADMIN_JWT)->adminLogin($params);
             return $this->success($data);
         } catch (Throwable $throwable) {
             return $this->fail($throwable->getMessage(), 200);
@@ -59,7 +58,7 @@ class AuthController extends ApiController
     #[Middleware(AuthMiddleware::class)]
     public function me(AuthService $authService)
     {
-        $data = $authService->getUser();
+        $data = $authService->setGuard(UserEnum::ADMIN_JWT)->getUser();
         return $this->success($data);
     }
 }

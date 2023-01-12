@@ -7,13 +7,9 @@ use App\Enum\DatabaseEnum;
 
 class CreateUsersTable extends Migration
 {
-    /**
-     * Get the migration connection name.
-     */
-    public function getConnection(): string
-    {
-        return DatabaseEnum::SHOP_CONNECTION;
-    }
+    /** @var string  */
+    protected string $connection = DatabaseEnum::SHOP_CONNECTION;
+
     /**
      * Run the migrations.
      */

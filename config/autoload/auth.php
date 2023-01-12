@@ -11,6 +11,7 @@ declare(strict_types=1);
  */
 use Qbhy\SimpleJwt\Encoders;
 use Qbhy\SimpleJwt\EncryptAdapters as Encrypter;
+use App\Enum\UserEnum;
 
 return [
     'default' => [
@@ -98,7 +99,7 @@ return [
              */
             'prefix' => env('SIMPLE_JWT_PREFIX', 'default'),
         ],
-        \App\Enum\UserEnum::API_JWT => [
+        UserEnum::API_JWT => [
             'driver' => Qbhy\HyperfAuth\Guard\JwtGuard::class,
             'provider' => 'users',
 
@@ -167,9 +168,9 @@ return [
              */
             'prefix' => env('SIMPLE_JWT_PREFIX', 'default'),
         ],
-        'admin_jwt' => [
+        UserEnum::ADMIN_JWT => [
             'driver' => Qbhy\HyperfAuth\Guard\JwtGuard::class,
-            'provider' => 'users',
+            'provider' => 'customer',
 
             /*
              * 以下是 simple-jwt 配置
@@ -246,5 +247,9 @@ return [
             'driver' => \Qbhy\HyperfAuth\Provider\EloquentProvider::class,
             'model' => App\Model\Shop\Users::class, // 需要实现 Qbhy\HyperfAuth\Authenticatable 接口
         ],
+        'customer' => [
+            'driver' => \Qbhy\HyperfAuth\Provider\EloquentProvider::class,
+            'model' => App\Model\Customer\CustomerUser::class, // 需要实现 Qbhy\HyperfAuth\Authenticatable 接口
+        ]
     ],
 ];

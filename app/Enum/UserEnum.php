@@ -15,4 +15,7 @@ enum UserEnum
 {
     /** @var string */
     public const API_JWT = 'api_jwt';
+
+    /** @var string */
+    public const ADMIN_JWT = 'admin_jwt';
 }

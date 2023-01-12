@@ -16,7 +16,7 @@ trait WsTraits
     public function getPingMessage()
     {
         return json_encode([
-            'code' => WsMessageCodeEnum::PING,
+            'code' => WsMessageCodeEnum::PING_MESSAGE,
             'message' => 'ping'
         ],JSON_UNESCAPED_UNICODE);
     }
@@ -30,7 +30,7 @@ trait WsTraits
     public function getOpenMessage()
     {
         return json_encode([
-            'code' => WsMessageCodeEnum::PING,
+            'code' => WsMessageCodeEnum::PING_MESSAGE,
             'message' => '用户上线了',
             'data' => [
                 'avatar'=>''
